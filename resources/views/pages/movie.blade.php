@@ -143,6 +143,17 @@
                                             href="{{ route('country', $movie->country->slug) }}"
                                             rel="tag">{{ $movie->country->title }}</a>
                                     </li>
+                                    <li class="list-info-group-item"><span>Diễn viên</span> :
+                                        @if ($movie->actors->isNotEmpty())
+                                            @foreach ($movie->actors as $actor)
+                                                <a href="#" rel="tag">{{ $actor->name }}</a>
+                                                @if (!$loop->last), @endif
+                                            @endforeach
+                                        @else
+                                            <span>Chưa xác định</span>
+                                        @endif
+                                    </li>
+                                    
                                     <li class="list-info-group-item">
                                         <span>Đánh giá</span>
                                         <ul class="list-inline rating" title="Average Rating">

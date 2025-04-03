@@ -75,7 +75,7 @@ class MovieController extends Controller
                 'slug' => 'required|unique:movies|max:255',
                 'movie_type' => 'required',
                 'time' => 'nullable|max:50',
-                'episode_count' => 'required|integer|min:1',
+                'episode_count' => 'integer|min:1',
                 'trailer' => 'nullable',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
                 'description' => 'nullable|max:1000',
@@ -103,7 +103,7 @@ class MovieController extends Controller
         
                 'time.max' => 'Thời lượng không được vượt quá 50 ký tự.',
         
-                'episode_count.integer' => 'Số tập phải là số nguyên.',
+           
                 'episode_count.required' => 'Vui lòng nhập số tập.',
 
                 'episode_count.min' => 'Số tập phải ít nhất là 1.',
@@ -193,7 +193,7 @@ class MovieController extends Controller
             'slug' => 'required|unique:movies,slug,' . $id . '|max:255',
             'movie_type' => 'required',
             'time' => 'nullable|max:50',
-            'episode_count' => 'nullable|integer|min:1',
+            'episode_count' => 'nullable|min:1',
             'trailer' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'description' => 'nullable|max:1000',
@@ -219,7 +219,6 @@ class MovieController extends Controller
     
             'time.max' => 'Thời lượng không được vượt quá 50 ký tự.',
     
-            'episode_count.integer' => 'Số tập phải là số nguyên.',
             'episode_count.min' => 'Số tập phải ít nhất là 1.',
     
             'image.image' => 'Tệp tải lên phải là hình ảnh.',

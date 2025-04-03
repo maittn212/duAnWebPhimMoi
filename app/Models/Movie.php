@@ -57,5 +57,10 @@ class Movie extends Model
     {
         return $this->hasMany(Episode::class, 'movie_id', 'id');
     }
+  // Một phim có nhiều diễn viên
+  public function actors()
+  {
+      return $this->hasMany(Actor::class, 'movie_id');
+  }
     
 }

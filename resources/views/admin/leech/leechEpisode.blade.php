@@ -19,6 +19,8 @@
                                     <th scope="col">Đường dẫn phim</th>
                                     <th scope="col">Số tập</th>
                                     <th scope="col">Tập phim</th>
+                
+
                     
                                     <th scope="col">Link embed</th>
                                     <th scope="col">Link M3u8</th>
@@ -57,18 +59,15 @@
                                         <td>
                                             <form action="{{ route('leech-episode-store', [$resp['movie']['slug']]) }}" method="POST">
                                                 @csrf
-                                                <button class="btn btn-success btn-sm mb-3">Thêm tập phim</button>
+                                                <button class="btn btn-warning btn-sm mb-3">Thêm tập phim</button>
                                             </form>
-                                            {{-- <form action="{{ route('movie.destroy', $movie->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không?')" title="Xóa">Xóa</button>
-                                            </form> --}}
+                                   
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    <a href="{{ route('leech-movie') }}">Quay lại</a>
                     </div>
                 </div>
             </div>

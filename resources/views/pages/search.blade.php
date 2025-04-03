@@ -22,7 +22,7 @@
                 <div class="section-bar clearfix">
                     <div class="row">
                         <!--Lọc phim-->
-                        @include('pages.include.locphim')       
+                        @include('pages.include.locphim')
                     </div>
                 </div>
                 <div class="halim_box">
@@ -33,15 +33,15 @@
                                     <a class="halim-thumb" href="{{ route('movie', $movie->slug) }}">
                                         <figure>
                                             @php
-                                            $image_check = substr($movie->image, 0, 5);
-                                        @endphp
-                                        @if ($image_check == 'https')
-                                            <img class="lazy img-responsive"  src="{{ $movie->image }}"  alt="{{ $movie->title }}"
-                                            title="{{ $movie->title }}">>
-                                        @else
-                                            <img class="lazy img-responsive"  src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"
-                                                title="{{ $movie->title }}">
-                                        @endif
+                                                $image_check = substr($movie->image, 0, 5);
+                                            @endphp
+                                            @if ($image_check == 'https')
+                                                <img class="lazy img-responsive" src="{{ $movie->image }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">>
+                                            @else
+                                                <img class="lazy img-responsive" src="{{ Storage::url($movie->image) }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                            @endif
                                         </figure>
                                         <span class="status">
                                             @if ($movie->resolution == 0)
@@ -72,7 +72,7 @@
                             </article>
                         @endforeach
                     @else
-                    <p>Không tìm thấy phim</p>
+                        <p>Không tìm thấy phim</p>
                     @endif
 
                 </div>

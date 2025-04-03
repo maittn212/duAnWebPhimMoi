@@ -93,6 +93,5 @@
             </section>
         </main>
         @include('pages.include.sidebar')
-
     </div>
 @endsection

@@ -149,8 +149,13 @@
                                                     <span class="badge bg-danger">Không hiển thị</span>
                                                 @endif
                                             </td>
-                                            <td><a href="{{ route('add-episode', $movie->id) }}" class="btn btn-info btn-sm">Thêm
-                                                    tập</a></td>
+                                            <td>
+                                                <a href="{{ route('add-episode', $movie->id) }}" class="btn btn-info btn-sm">Thêm
+                                                    tập
+                                                </a>
+                                                <a href="{{ route('leech-episode', $movie['slug']) }}" class="btn btn-success  btn-sm mb-3">Tập phim API</a>
+                                                
+                                                </td>
                                             <td>
                                                 @if ($movie->is_hot == 1)
                                                     <span class="badge bg-success">Có</span>
