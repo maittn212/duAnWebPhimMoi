@@ -134,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h1>
                                 <a class="navbar-brand" href="{{ url('/home') }}"><span
                                         class="fa fa-area-chart"></span>
-                                    Glance<span class="dashboard_text">Design dashboard</span></a>
+                                    <span class="dashboard_text">Admin Website Phim Mới</span></a>
                             </h1>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -143,6 +143,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <li class="treeview">
                                     <a href="{{ url('/home') }}">
                                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="{{ route('info.index') }}">
+                                        <i class="fa fa-info"></i> <span>Thông tin Website</span>
                                     </a>
                                 </li>
                                 <li class="treeview">
@@ -169,6 +174,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <a href="{{ route('episode.index') }}">
                                         <i class="fa fa-video-camera"></i> <span>Tập phim</span>
                                     </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="{{ route('leech-movie') }}">
+                                        <i class="fa fa-download"></i> <span>Leech phim</span>
+                                    </a>
+                                    {{-- <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('leech-episode', ) }}">
+                                                <i class="fa fa-circle-o"></i> Leech tập phim
+                                            </a>
+                                        </li>
+                                    </ul> --}}
                                 </li>
 
                                 </li>

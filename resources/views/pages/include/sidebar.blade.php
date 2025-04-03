@@ -30,8 +30,17 @@
                         <div class="item post-37176">
                             <a href="{{ route('movie', $trending->slug) }}" title="{{ $trending->title }}">
                                 <div class="item-link">
-                                    <img src="{{ Storage::url($trending->image) }}" class="lazy post-thumb"
-                                        alt="{{ $trending->title }}" title="{{ $trending->title }}" />
+                                    @php
+                                        $image_check = substr($trending->image, 0, 5);
+                                    @endphp
+                                    @if ($image_check == 'https')
+                                        <img class="lazy post-thumb" src="{{ $trending->image }}"
+                                            alt="{{ $trending->title }}" title="{{ $trending->title }}">>
+                                    @else
+                                        <img class="lazy post-thumb" src="{{ Storage::url($trending->image) }}"
+                                            alt="{{ $trending->title }}" title="{{ $trending->title }}">
+                                    @endif
+
                                     <span class="is_trailer"> <span class="is_trailer">
                                             @if ($trending->resolution == 0)
                                                 HD
@@ -59,9 +68,10 @@
                             <div class="" style="float: left">
                                 <!--Sao-->
                                 <ul class="list-inline ration" title="Average Ratin">
-                                @for ($count = 1; $count <= 5; $count++)
-                                    <li title="star_rating" style="font-size:20px;color:#ffcc00;padding:0"> &#9733;</li>
-                                @endfor
+                                    @for ($count = 1; $count <= 5; $count++)
+                                        <li title="star_rating" style="font-size:20px;color:#ffcc00;padding:0"> &#9733;
+                                        </li>
+                                    @endfor
 
                                 </ul>
                             </div>

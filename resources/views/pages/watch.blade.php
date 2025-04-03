@@ -119,100 +119,63 @@
                         <h3 class="section-title"><span>CÓ THỂ BẠN MUỐN XEM</span></h3>
                     </div>
                     <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
-                        <article class="thumb grid-item post-38494">
-                            <div class="halim-item">
-                                <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-                                    <figure><img class="lazy img-responsive"
-                                            src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg"
-                                            alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                            aria-hidden="true"></i>Vietsub</span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p>
-                                            <p class="original_title">A Classic Horror Story</p>
+                        @foreach ($movie_related as $movie)
+                            <article class="thumb grid-item post-38498">
+                                <div class="halim-item">
+                                    <a class="halim-thumb" href="{{ route('movie', $movie->slug) }}"
+                                        title="{{ $movie->title }}">
+                                        <figure>
+                                            @php
+                                                $image_check = substr($movie->image, 0, 5);
+                                            @endphp
+                                            @if ($image_check == 'https')
+                                                <img class="lazy img-responsive" src="{{ $movie->image }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                            @else
+                                                <img class="lazy img-responsive" src="{{ Storage::url($movie->image) }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                            @endif
+                                        </figure>
+                                        <span class="status">
+                                            @if ($movie->resolution == 0)
+                                                HD
+                                            @elseif($movie->resolution == 1)
+                                                SD
+                                            @elseif ($movie->resolution == 2)
+                                                HDCam
+                                            @elseif ($movie->resolution == 3)
+                                                Cam
+                                            @elseif ($movie->resolution == 4)
+                                                FullHD
+                                            @endif
+                                        </span><span class="episode">
+                                            <i class="fa fa-play" aria-hidden="true"></i>
+                                            {{ $movie->episode_current_count ?? 0 }}/{{ $movie->episode_count }}
+                                            @if ($movie->language_type == 0)
+                                                Vietsub
+                                            @else
+                                                Thuyết minh
+                                            @endif
+                                        </span>
+
+                                        <div class="icon_overlay"></div>
+                                        <div class="halim-post-title-box">
+                                            <div class="halim-post-title ">
+                                                <p class="entry-title">{{ $movie->title }}</p>
+                                                @if ($movie->eng_name !== null)
+                                                    <p class="original_title">{{ $movie->eng_name }}</p>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
-                        <article class="thumb grid-item post-38494">
-                            <div class="halim-item">
-                                <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-                                    <figure><img class="lazy img-responsive"
-                                            src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg"
-                                            alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                            aria-hidden="true"></i>Vietsub</span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p>
-                                            <p class="original_title">A Classic Horror Story</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
-                        <article class="thumb grid-item post-38494">
-                            <div class="halim-item">
-                                <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-                                    <figure><img class="lazy img-responsive"
-                                            src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg"
-                                            alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                            aria-hidden="true"></i>Vietsub</span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p>
-                                            <p class="original_title">A Classic Horror Story</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
-                        <article class="thumb grid-item post-38494">
-                            <div class="halim-item">
-                                <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-                                    <figure><img class="lazy img-responsive"
-                                            src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg"
-                                            alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                            aria-hidden="true"></i>Vietsub</span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p>
-                                            <p class="original_title">A Classic Horror Story</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
-                        <article class="thumb grid-item post-38494">
-                            <div class="halim-item">
-                                <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-                                    <figure><img class="lazy img-responsive"
-                                            src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg"
-                                            alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                            aria-hidden="true"></i>Vietsub</span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p>
-                                            <p class="original_title">A Classic Horror Story</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
+                                    </a>
+                                </div>
+                            </article>
+                        @endforeach
+
 
                     </div>
                     <script>
-                        jQuery(document).ready(function($) {
+                        $(document).ready(function($) {
                             var owl = $('#halim_related_movies-2');
                             owl.owlCarousel({
                                 loop: true,

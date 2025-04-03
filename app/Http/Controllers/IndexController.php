@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Episode;
 use App\Models\Genre;
+use App\Models\Info;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
 use App\Models\Rating;
@@ -19,6 +20,10 @@ class IndexController extends Controller
 {
     public function home(Request $request)
     {
+        $info = Info::find(1);
+        $title = $info->title;
+        $description = $info->description;
+
         $phimHot = Movie::withCount(['episodes as episode_count_current'])->where('is_hot', 1)->where('status', 1)->orderBy('updated_at', 'desc')->get();
         $movie_trending = Movie::where('is_hot', 1)->where('status', 1)->orderBy('updated_at', 'desc')->take(15)->get();
         $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
@@ -28,7 +33,7 @@ class IndexController extends Controller
             $query->withCount(['episodes as episode_current_count']);
         }])->where('status', 1)->orderBy('id', 'desc')->get();
 
-        return view('pages.home', compact('phimHot', 'categories', 'genres', 'countries', 'category_home', 'movie_trending'));
+        return view('pages.home', compact('title','description','info','phimHot', 'categories', 'genres', 'countries', 'category_home', 'movie_trending'));
     }
     public function search(Request $request)
     {
@@ -232,12 +237,23 @@ class IndexController extends Controller
     public function watch($slug, $tap)
     {
 
+        
         $movie_trending = DB::table('movies')->select('*')->where('is_hot', 1)->where('status', 1)->orderBy('updated_at', 'desc')->take(15)->get();
         $categories  = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $genres = Genre::orderBy('id', 'desc')->get();
 
         $movie = Movie::with('category', 'movie_genre', 'genre', 'country', 'episodes', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
+           $movie_related = Movie::where('status', 1)
+            ->where('id', '!=', $movie->id)
+            ->whereHas('movie_genre', function ($query) use ($movie) {
+                $query->where('genre_id', $movie->genre_id);
+            })
+            ->withCount(['episodes as episode_current_count'])
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
+
         // dd($movie->category->slug);
         if (isset($tap)) {
             $tapphim = $tap;
@@ -248,15 +264,15 @@ class IndexController extends Controller
             $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
         }
 
-        return view('pages.watch', compact('episode', 'movie_trending', 'categories', 'countries', 'genres', 'movie', 'tapphim'));
+        return view('pages.watch', compact('movie_related','episode', 'movie_trending', 'categories', 'countries', 'genres', 'movie', 'tapphim'));
     }
     public function filterTopview(Request $request)
     {
         $data = $request->all();
         $movies = DB::table('movies')->where('top_view', $data['value'])->orderBy('updated_at', 'desc')->take(15)->get();
-
+    
         $output = '';
-
+    
         if ($movies->count() > 0) {
             foreach ($movies as $mov) {
                 if ($mov->resolution == 0) {
@@ -268,41 +284,49 @@ class IndexController extends Controller
                 } else {
                     $text = 'Cam';
                 }
-
+    
+                $image_check = substr($mov->image, 0, 5); // Check the start of the image URL
+    
+                // If the image URL starts with 'https', use the URL directly. Otherwise, use Storage URL.
+                if ($image_check == 'https') {
+                    $image_url = $mov->image; // Image from API
+                } else {
+                    $image_url = Storage::url($mov->image); // Image from local storage
+                }
+    
                 $output .= '<div class="item post-37176">
-                <a href="' . url('phim/' . $mov->slug) . '" title="' . $mov->title . '">
-                    <div class="item-link">
-                        <img src="' . Storage::url($mov->image) . '" class="lazy post-thumb" 
-                            alt="' . $mov->title . '" title="' . $mov->title . '" />
-                        <span class="is_trailer">' . $text . '</span>
-                    </div>
-                    <p class="title">' . $mov->title . '</p>
-                </a>
-                <div class="viewsCount" style="color: #9d9d9d;">';
-
+                    <a href="' . url('phim/' . $mov->slug) . '" title="' . $mov->title . '">
+                        <div class="item-link">
+                            <img src="' . $image_url . '" class="lazy post-thumb" 
+                                alt="' . $mov->title . '" title="' . $mov->title . '" />
+                            <span class="is_trailer">' . $text . '</span>
+                        </div>
+                        <p class="title">' . $mov->title . '</p>
+                    </a>
+                    <div class="viewsCount" style="color: #9d9d9d;">';
+    
                 if ($mov->count_views > 0) {
                     $output .= number_format($mov->count_views) . ' lượt quan tâm';
                 }
-
+    
                 $output .=    '</div>
-                <div class="viewsCount" style="color: #9d9d9d;">' . $mov->year . '</div>
-                <div class="" style="float: left">
-                    <!--Sao-->
-                    <ul class="list-inline ration" title="Average Rating">';
+                    <div class="viewsCount" style="color: #9d9d9d;">' . $mov->year . '</div>
+                    <div class="" style="float: left">
+                        <ul class="list-inline ration" title="Average Rating">';
                 for ($count = 1; $count <= 5; $count++) {
                     $output .= '<li title="star_rating" style="font-size:20px;color:#ffcc00;padding:0"> &#9733;</li>';
                 }
                 $output .=    '</ul>
-                </div>
-            </div>';
+                    </div>
+                </div>';
             }
         } else {
             $output = '<p class="text-center">Không có dữ liệu</p>';
         }
-
+    
         echo $output;
     }
-
+    
 
     public function filterTopviewDefault(Request $request)
     {
@@ -340,8 +364,19 @@ class IndexController extends Controller
         }
         echo $output;
     }
-    public function episode()
+    public function episode($slug)
+
     {
-        return view('pages.episode');
+        $movie = Movie::with('category', 'movie_genre', 'genre', 'country', 'episodes', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
+        $movie_related = Movie::where('status', 1)
+         ->where('id', '!=', $movie->id)
+         ->whereHas('movie_genre', function ($query) use ($movie) {
+             $query->where('genre_id', $movie->genre_id);
+         })
+         ->withCount(['episodes as episode_current_count'])
+         ->inRandomOrder()
+         ->take(10)
+         ->get();
+        return view('pages.episode',compact('movie','movie_related'));
     }
 }

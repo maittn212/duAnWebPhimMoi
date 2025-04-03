@@ -11,21 +11,21 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="language" content="Việt Nam">
-    <link rel="stylesheet" href="https://motchillzz.store/logo.webp">
+    <link rel="stylesheet" href="{{ Storage::url($info_home->logo) }}">
     {{-- {!! Flasher::render() !!} --}}
 
     <link rel="shortcut icon"
-        href="https://motchillzz.store/logo.webp"
+        href="{{ Storage::url($info_home->logo) }}"
         type="image/x-icon" />
     <meta name="revisit-after" content="1 days" />
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-    <title>Phim hay 2021 - Xem phim hay nhất</title>
+    <title>{{ $info_home->title }}</title>
     <meta name="description"
-        content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
-    <link rel="canonical" href="">
-    <link rel="next" href="" />
+        content="{{ $info_home->description }}" />
+    <link rel="canonical" href="{{ Request::url() }}">
+    <link rel="next" href="{{ Request::url() }}" />
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
+    <meta property="og:title" content="{{ $info_home->title }}" />
     <meta property="og:description"
         content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
     <meta property="og:url" content="" />
@@ -49,10 +49,27 @@
     </style>
     <style>
         #header .site-title {
-            background: url(https://motchillzz.store/logo.webp) no-repeat top left;
+            /* background: url(https://motchillzz.store/logo.webp) no-repeat top left; */
             background-size: contain;
             text-indent: -9999px;
         }
+        .slogan {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.slogan .site-title {
+    margin: 0;
+    font-size: 18px; /* Điều chỉnh kích thước chữ nếu cần */
+    display: flex;
+    align-items: center;
+}
+
+.slogan img {
+    height: 50px; /* Giảm chiều cao ảnh để cân đối với thanh tìm kiếm */
+    margin-left: 10px; /* Tạo khoảng cách giữa chữ và ảnh */
+}
+
     </style>
 </head>
 
@@ -61,7 +78,8 @@
         <div class="container">
             <div class="row" id="headwrap">
                 <div class="col-md-3 col-sm-6 slogan">
-                    <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
+                    <p  class="site-title" ><a class="logo" href="" title="phim hay ">Phim Hay</p>
+                        <img src="{{ Storage::url($info_home->logo) }}" style="height:60px">
                     </a>
                 </div>
                 <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
@@ -207,7 +225,14 @@
     </div>
     <div class="container">
         @yield('content')
+        @include('pages.include.banner')
+
     </div>
+    <script>
+      $(window).on('load', function(){
+        $('#bannerQC').modal('show');
+      })
+    </script>
     <div class="clearfix"></div>
 
     <footer id="footer" class="clearfix">
@@ -216,12 +241,24 @@
                 <div class="widget about col-xs-12 col-sm-4 col-md-4">
                     <div class="footer-logo">
                         <img class="img-responsive"
-                            src="https://motchillzz.store/logo.webp"
-                            alt="Phim hay 2021- Xem phim hay nhất" />
+                            src="{{ Storage::url($info_home->logo) }}"
+                            alt="Phim hay 2025 - Xem phim hay nhất"  />
                     </div>
-                    Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                        data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
+                    {{-- Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                        data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a> --}}
                 </div>
+                <div class="widget about col-xs-12 col-sm-4 col-md-8">
+                    <div class="footer-logo">
+                        <p>Email: {{$info_home->email }}</p>
+                        <p>Số điện thoại: {{$info_home->phone }}</p>
+                        <p>Mô tả: {{$info_home->description }}</p>
+
+
+                    </div>
+                    {{-- Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                        data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a> --}}
+                </div>
+
             </div>
         </div>
     </footer>

@@ -6,41 +6,6 @@
                 <div class="ajax"></div>
             </div>
         </div>
-        {{-- <div class="col-xs-12 carausel-sliderWidget">
-            <section id="halim-advanced-widget-4">
-                <div class="section-heading">
-                    <a href="danhmuc.php" title="Phim Chiếu Rạp">
-                        <span class="h-text">Phim Chiếu Rạp</span>
-                    </a>
-                    <ul class="heading-nav pull-right hidden-xs">
-                        <li class="section-btn halim_ajax_get_post" data-catid="4" data-showpost="12"
-                            data-widgetid="halim-advanced-widget-4" data-layout="6col"><span data-text="Chiếu Rạp"></span>
-                        </li>
-                    </ul>
-                </div>
-                <div id="halim-advanced-widget-4-ajax-box" class="halim_box">
-                    <article class="col-md-2 col-sm-4 col-xs-6 thumb grid-item post-38424">
-                        <div class="halim-item">
-                            <a class="halim-thumb" href="{{ route('movie') }}" title="GÓA PHỤ ĐEN">
-                                <figure><img class="lazy img-responsive"
-                                        src="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_disneyplus_21043-1_63f71aa0.jpeg"
-                                        alt="GÓA PHỤ ĐEN" title="GÓA PHỤ ĐEN"></figure>
-                                <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                        aria-hidden="true"></i>Vietsub</span>
-                                <div class="icon_overlay"></div>
-                                <div class="halim-post-title-box">
-                                    <div class="halim-post-title ">
-                                        <p class="entry-title">GÓA PHỤ ĐEN</p>
-                                        <p class="original_title">Black Widow</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <div class="clearfix"></div>
-        </div> --}}
         <div id="halim_related_movies-2xx" class="wrap-slider">
             <div class="section-bar clearfix">
                 <h3 class="section-title"><span>PHIM HOT</span></h3>
@@ -50,8 +15,18 @@
                     <article class="thumb grid-item post-38498">
                         <div class="halim-item">
                             <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}" title="{{ $hot->title }}">
-                                <figure><img class="lazy img-responsive" src="{{ Storage::url($hot->image) }}"
-                                        alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
+                                <figure>
+                                    @php
+                                        $image_check = substr($hot->image, 0, 5);
+                                    @endphp
+                                    @if ($image_check == 'https')
+                                        <img src="{{ $hot->image }}"  alt="{{ $hot->title }}"
+                                        title="{{ $hot->title }}">>
+                                    @else
+                                        <img src="{{ Storage::url($hot->image) }}" alt="{{ $hot->title }}"
+                                            title="{{ $hot->title }}">
+                                    @endif
+                                </figure>
                                 <span class="status">
                                     @if ($hot->resolution == 0)
                                         HD
@@ -131,7 +106,7 @@
                 <section id="halim-advanced-widget-2">
                     <div class="section-heading">
                         <style>
-                            .xemThem{
+                            .xemThem {
                                 position: absolute;
                                 right: 0;
                                 font-weight: 400;
@@ -141,7 +116,8 @@
                             }
                         </style>
                         <span class="h-text">{{ $category->title }}</span>
-                        <a href="{{ route('category', $category->slug) }}" title="Xem thêm" class="xemThem"> <span class="h-text">Xem
+                        <a href="{{ route('category', $category->slug) }}" title="Xem thêm" class="xemThem"> <span
+                                class="h-text">Xem
                                 thêm</span></a>
                     </div>
                     <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
@@ -151,8 +127,17 @@
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie', $movie->slug) }}">
                                             <figure>
-                                                <img class="lazy img-responsive" src="{{ Storage::url($movie->image) }}"
-                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                                @php
+                                                $image_check = substr($movie->image, 0, 5);
+                                            @endphp
+                                            @if ($image_check == 'https')
+                                                <img class="lazy img-responsive"  src="{{ $movie->image }}"  alt="{{ $movie->title }}"
+                                                title="{{ $movie->title }}">>
+                                            @else
+                                                <img class="lazy img-responsive"  src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"
+                                                    title="{{ $movie->title }}">
+                                            @endif
+                                              
                                             </figure>
                                             <span class="status">
                                                 @if ($movie->resolution == 0)

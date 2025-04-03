@@ -47,7 +47,17 @@
 
                         <div class="movie_info col-xs-12">
                             <div class="movie-poster col-md-3">
-                                <img class="movie-thumb" src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}">
+                                @php
+                                    $image_check = substr($movie->image, 0, 5);
+                                @endphp
+                                @if ($image_check == 'https')
+                                    <img class="movie-thumb" src="{{ $movie->image }}" alt="{{ $movie->title }}"
+                                        title="{{ $movie->title }}">
+                                @else
+                                    <img class="movie-thumb" src="{{ Storage::url($movie->image) }}"
+                                        alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                @endif
+
                                 @if (isset($firstEpisode) && $firstEpisode->episode)
                                     <div class="bwa-content">
                                         <div class="loader"></div>
@@ -58,16 +68,17 @@
 
                                     </div>
                                 @endif
-                                
 
-                                <div class="fb-like" data-href="{{ url()->current() }}" data-width="" data-layout="" data-action="" data-size="" data-share="true" style="margin-top: 30px;"></div>
+
+                                <div class="fb-like" data-href="{{ url()->current() }}" data-width="" data-layout=""
+                                    data-action="" data-size="" data-share="true" style="margin-top: 30px;"></div>
                             </div>
-                    
+
                             <div class="film-poster col-md-9">
                                 <h1 class="movie-title title-1"
                                     style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">
                                     {{ $movie->title }}</h1>
-                                    
+
                                 @if ($movie->eng_name !== null)
                                     <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->en }}</h2>
                                 @endif
@@ -159,7 +170,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                
+
                                 <style>
                                     .list-info-group-item {
                                         display: flex;
@@ -195,11 +206,11 @@
                     <div class="section-bar clearfix">
                         <h2 class="section-title"><span style="color:#ffed4d">Nội dung phim</span></h2>
                     </div>
-                    
+
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
                             <article id="post-38424" class="item-content">
-                                {{ $movie->description }}
+                                {!! $movie->description !!}
                             </article>
                         </div>
                     </div>
@@ -211,8 +222,8 @@
                         <div class="video-item halim-entry-box">
                             <article id="post-38424" class="item-content">
                                 <iframe width="100%" height="400"
-                                    src="https://www.youtube.com/embed/{{ $movie->trailer }}" title="{{ $movie->title }}"
-                                    frameborder="0"
+                                    src="https://www.youtube.com/embed/{{ $movie->trailer }}"
+                                    title="{{ $movie->title }}" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </article>
@@ -249,8 +260,18 @@
                                 <div class="halim-item">
                                     <a class="halim-thumb" href="{{ route('movie', $movie->slug) }}"
                                         title="{{ $movie->title }}">
-                                        <figure><img class="lazy img-responsive" src="{{ Storage::url($movie->image) }}"
-                                                alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
+                                        <figure>
+                                            @php
+                                                $image_check = substr($movie->image, 0, 5);
+                                            @endphp
+                                            @if ($image_check == 'https')
+                                                <img class="lazy img-responsive" src="{{ $movie->image }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                            @else
+                                                <img class="lazy img-responsive" src="{{ Storage::url($movie->image) }}"
+                                                    alt="{{ $movie->title }}" title="{{ $movie->title }}">
+                                            @endif
+                                        </figure>
                                         <span class="status">
                                             @if ($movie->resolution == 0)
                                                 HD
@@ -286,7 +307,7 @@
                                 </div>
                             </article>
                         @endforeach
-                        
+
 
                     </div>
                     <script>

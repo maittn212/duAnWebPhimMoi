@@ -76,7 +76,16 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <img src="{{ Storage::url($movie->image) }}" width="75" height="100">
+                                                @php
+                                                    $image_check = substr($movie->image,0,5)
+                                                @endphp
+                                                @if ($image_check == 'https')
+                                                    <img src="{{ $movie->image }}" width="75" height="100">
+                                                    
+                                                @else
+                                                    <img src="{{ Storage::url($movie->image) }}" width="75" height="100">
+                                                    
+                                                @endif
                                             </td>
                                             <td>
                                                 <select name="year" id="{{ $movie->id }}"
