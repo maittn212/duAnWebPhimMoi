@@ -101,7 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- index page sales reviews visitors pie chart -->
     <!-- requried-jsfiles-for owl -->
     <link href="{{ asset('backend/css/owl.carousel.css') }}" rel="stylesheet" />
-    <script src="js/owl.carousel.js"></script>
+    <script src="{{ asset('backend/js/owl.carousel.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('#owl-demo').owlCarousel({
@@ -185,6 +185,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <i class="fa fa-image"></i> <span>Banner</span>
                                     </a>
                                 </li>
+                                <li class="treeview">
+                                    <a href="{{ url('/') }}" target="_blank">
+                                        <i class="fa fa-home"></i> <span>Trang client</span>
+                                    </a>
+                                </li>
 
                                 </li>
                             </ul>
@@ -195,7 +200,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="header-right">
                 <!--search-box-->
-                <div class="search-box">
+                {{-- <div class="search-box">
                     <form class="input">
                         <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search"
                             id="input-31" />
@@ -206,7 +211,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </svg>
                         </label>
                     </form>
-                </div>
+                </div> --}}
                 <!--//end-search-box-->
                 <div class="profile_details">
                     <ul>

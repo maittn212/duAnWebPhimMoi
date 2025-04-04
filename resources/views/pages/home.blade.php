@@ -20,8 +20,8 @@
                                         $image_check = substr($hot->image, 0, 5);
                                     @endphp
                                     @if ($image_check == 'https')
-                                        <img src="{{ $hot->image }}"  alt="{{ $hot->title }}"
-                                        title="{{ $hot->title }}">>
+                                        <img src="{{ $hot->image }}" alt="{{ $hot->title }}"
+                                            title="{{ $hot->title }}">>
                                     @else
                                         <img src="{{ Storage::url($hot->image) }}" alt="{{ $hot->title }}"
                                             title="{{ $hot->title }}">
@@ -70,44 +70,137 @@
                 @endforeach
             </div>
             <div class="ad-banners">
-                <div class="ad-banner">
-                    <a href="https://example1.com" target="_blank">
-                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 1">
-                    </a>
-                </div>
-                <div class="ad-banner">
-                    <a href="https://example2.com" target="_blank">
-                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 2">
-                    </a>
-                </div>
-                <div class="ad-banner">
-                    <a href="https://example3.com" target="_blank">
-                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 3">
-                    </a>
-                </div>
+                @if ($hotBanners->isNotEmpty())
+                    @foreach ($hotBanners as $banner)
+                        <div class="ad-banner1">
+                            <form action="{{ route('update-click', $banner->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                <button style="border: none; background: transparent; padding: 0;">
+                                    <a href="{{ $banner->url }}" target="_blank">
+                                        @php
+                                            $image_check = substr($banner->image, 0, 5);
+                                        @endphp
+                                        @if ($image_check == 'https')
+                                            <img src="{{ $banner->image }}" alt="{{ $banner->title }}"
+                                                title="{{ $banner->title }}">
+                                        @else
+                                            <img src="{{ Storage::url($banner->image) }}" alt="{{ $banner->title }}"
+                                                title="{{ $banner->title }}">
+                                        @endif
+                                    </a>
+                                </button>
+                            </form>
+                         
+                        </div>
+                    @endforeach
+                @else
+                    <div class="ad-banner">
+                        <div class="contact-header">
+                            <h2 class="contact-title">🔥 Booking Quảng Cáo 🔥</h2>
+                            <p class="contact-description">Đưa thương hiệu của bạn đến với hàng nghìn khách hàng!</p>
+                        </div>
+                        <div class="advertisement-contact">
+                            <div class="contact-body">
+                                <a href="mailto:{{ $info->email }}" class="contact-button">Liên Hệ Quảng Cáo</a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             </div>
             <style>
-   .ad-banners {
-    display: flex;
-    justify-content: space-between;  /* Căn giữa hoặc phân phối không gian giữa các banner */
-    margin-top: 20px;  /* Khoảng cách với phần trên */
-    margin-bottom: 20px;
-}
+                .ad-banners {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .ad-banner1 {
+                width: 32%; /* Đảm bảo mỗi banner chiếm 1/3 chiều rộng của container */
+                height: 300px; /* Giới hạn chiều cao của banner */
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .ad-banner1 img {
+                width: 690px; /* Đảm bảo ảnh chiếm 100% chiều rộng của phần tử */
+                height: 180px; /* Đảm bảo ảnh chiếm 100% chiều cao của phần tử */
+                object-fit: cover; /* Đảm bảo ảnh không bị méo và cắt phần thừa để khớp với kích thước */
+                display: block;
+            }
+            
 
-.ad-banner {
-    width: 32%;  /* Chiều rộng của mỗi banner, điều chỉnh tùy theo nhu cầu */
-    height: auto;
-    box-sizing: border-box;
-}
+                /* Liên hệ quảng cáo */
+                .ad-banner {
+                    width: 100%;
+                    padding: 30px 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    margin: 30px 0;
+                }
+                .contact-header {
+                    background-color: #202b34;
+                    text-align: center;
+                    padding: 20px;
+                    color: #fff;
+                }
+                .contact-title {
 
-.ad-banner img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+                    font-weight: bold;
+                    font-size: 2rem;
+                    margin-bottom: 15px;
+                }
+                .advertisement-contact {
+                    background-color: #202b34;
+
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+                .contact-body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+                .contact-button {
+                    background-color: #d30000;
+                    color: #fff;
+                    padding: 12px 30px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    text-align: center;
+                    /* transition:  transform 0.2s ease;  */
+                    display: inline-block;
+                }
+                .contact-button:hover {
+                    background-color: #8f0000;
+                    color: #fff;
+                    transform: translateY(-2px);
+                }
 
 
+                /* Responsive: Chỉnh sửa cho màn hình nhỏ */
+                @media (max-width: 768px) {
+                    .contact-title {
+                        font-size: 1.6rem;
+                    }
 
+                    .contact-body p {
+                        font-size: 1rem;
+
+                    }
+
+                    .contact-button {
+                        padding: 10px 25px;
+
+                    }
+                }
             </style>
 
             <script>
@@ -169,16 +262,17 @@
                                         <a class="halim-thumb" href="{{ route('movie', $movie->slug) }}">
                                             <figure>
                                                 @php
-                                                $image_check = substr($movie->image, 0, 5);
-                                            @endphp
-                                            @if ($image_check == 'https')
-                                                <img class="lazy img-responsive"  src="{{ $movie->image }}"  alt="{{ $movie->title }}"
-                                                title="{{ $movie->title }}">>
-                                            @else
-                                                <img class="lazy img-responsive"  src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"
-                                                    title="{{ $movie->title }}">
-                                            @endif
-                                              
+                                                    $image_check = substr($movie->image, 0, 5);
+                                                @endphp
+                                                @if ($image_check == 'https')
+                                                    <img class="lazy img-responsive" src="{{ $movie->image }}"
+                                                        alt="{{ $movie->title }}" title="{{ $movie->title }}">>
+                                                @else
+                                                    <img class="lazy img-responsive"
+                                                        src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"
+                                                        title="{{ $movie->title }}">
+                                                @endif
+
                                             </figure>
                                             <span class="status">
                                                 @if ($movie->resolution == 0)
@@ -220,7 +314,6 @@
                                         </a>
                                     </div>
                                 </article>
-                                
                             @endforeach
                         @else
                             <p>Không có phim thuộc danh mục này</p>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 04, 2025 at 03:09 AM
+-- Generation Time: Apr 04, 2025 at 10:30 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.20
 
@@ -123,7 +123,51 @@ INSERT INTO `actors` (`id`, `name`, `movie_id`) VALUES
 (83, '任世豪', '41'),
 (84, '張楚寒', '41'),
 (85, '易恩', '41'),
-(86, 'Pan Zi Yan', '41');
+(86, 'Pan Zi Yan', '41'),
+(87, 'Triệu Bỉnh Thụy', '42'),
+(88, 'Trương Tân Vũ', '42'),
+(89, 'Sử Tiểu Hồng', '42'),
+(90, 'Phùng Lệ', '42'),
+(91, 'Sử Viễn Đình', '42'),
+(92, 'Lục Hồng', '42'),
+(93, 'Zoé Marchal', '43'),
+(94, 'Franck Gastambide', '43'),
+(95, 'Bosh', '43'),
+(96, 'Mareva Ranarivelo', '43'),
+(97, 'Alassane Diong', '43'),
+(98, 'Sérigne Gueye', '43'),
+(99, 'Mylène Jampanoï', '43'),
+(100, 'Alix Bénézech', '43'),
+(101, 'Hafid F. Benamar', '43'),
+(102, 'Zoé Diowo-Ceccaldi', '43'),
+(103, 'Charlotte Kirk', '44'),
+(104, 'Philip Winchester', '44'),
+(105, 'Colm Meaney', '44'),
+(106, 'Hoji Fortuna', '44'),
+(107, 'Stephanie Beacham', '44'),
+(108, 'Sean Pertwee', '44'),
+(109, 'Colin Egglesfield', '44'),
+(110, 'Pau Poch', '44'),
+(111, 'Yan Tual', '44'),
+(112, 'Harvey Dean', '44'),
+(113, '박해수', '45'),
+(114, '신민아', '45'),
+(115, '이희준', '45'),
+(116, '김성균', '45'),
+(117, '이광수', '45'),
+(118, '공승연', '45'),
+(119, 'Ademara', '46'),
+(120, 'Flávia Reis', '46'),
+(121, 'Orã Figueiredo', '46'),
+(122, 'Mel Maia', '46'),
+(123, 'Thamyris Borsan', '46'),
+(124, 'Pedro Ottoni', '46'),
+(125, 'Maicon Rodrigues', '46'),
+(126, 'Lu Périssé', '46'),
+(127, 'Carol Garcia', '46'),
+(128, 'Leandro Santanna', '46'),
+(129, 'Sandra de Sá', '46'),
+(130, 'Maíra Azevedo', '46');
 
 -- --------------------------------------------------------
 
@@ -134,7 +178,7 @@ INSERT INTO `actors` (`id`, `name`, `movie_id`) VALUES
 CREATE TABLE `banners` (
   `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
-  `url` int NOT NULL,
+  `url` text NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -144,6 +188,16 @@ CREATE TABLE `banners` (
   `status` int NOT NULL,
   `position` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `title`, `url`, `image`, `start_date`, `end_date`, `click_count`, `created_at`, `updated_at`, `status`, `position`) VALUES
+(1, 'FB88 – Nhà Cái Uy Tín Cung Cấp Game Hot Nhất Châu Á', 'https://fb88.li/', 'banner/UNcA9kRyctqAjYaVPkcDVStaN7QtmU7jbwUTApNl.webp', '2025-04-02 17:00:00', '2025-04-10 17:00:00', 5, '2025-04-04 04:13:13', '2025-04-04 04:13:13', 1, 0),
+(2, 'TOP88 - Cổng game đánh bài đổi thưởng tiền thật uy tín nhất', 'https://web.top88.vip/', 'banner/dlS59JAOvBkMIB1jwVw8yZVhkFF6XJMCeZaFsTt9.jpg', '2025-04-03 17:00:00', '2025-06-20 17:00:00', 2, '2025-04-04 08:44:50', '2025-04-04 08:44:50', 1, 2),
+(3, 'Web cá độ uy tín', 'https://11bet.com/', 'banner/wJxjKB3fhO5dnNDOBlwDHq6Fks6I8Y3gfl41O8aM.webp', '2025-04-03 17:00:00', '2025-05-10 17:00:00', 2, '2025-04-04 09:12:19', '2025-04-04 09:12:19', 1, 1),
+(4, 'Game Tài Xỉu Online | Link chính thức 2024 | Tải APP nhanh', 'https://taixiuonline78.com/', 'banner/TSbBaSTEJuCAdXC5PcUTadcUUfwIDwufUrDgI85Z.jpg', '2025-04-03 17:00:00', '2025-05-10 17:00:00', 2, '2025-04-04 09:15:02', '2025-04-04 09:15:02', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -220,7 +274,10 @@ INSERT INTO `countries` (`id`, `title`, `description`, `status`, `slug`) VALUES
 (5, 'Mỹ', 'abcd', 1, 'my'),
 (6, 'Hàn Quốc', NULL, 1, 'han-quoc'),
 (7, 'Nhật Bản', NULL, 1, 'nhat-ban'),
-(8, 'Âu Mỹ', NULL, 1, 'au-my');
+(8, 'Âu Mỹ', NULL, 1, 'au-my'),
+(9, 'Pháp', NULL, 1, 'phap'),
+(10, 'Anh', NULL, 1, 'anh'),
+(11, 'Brazil', NULL, 1, 'brazil');
 
 -- --------------------------------------------------------
 
@@ -372,7 +429,47 @@ INSERT INTO `episodes` (`id`, `movie_id`, `link`, `episode`, `updated_at`, `crea
 (71, 41, '<p><iframe src=\"https://vip.opstream15.com/share/0ccd8448df3ef40e98bd5b998d443947\" frameborder=\"0\"></iframe></p>', '1', '2025-04-03 13:53:29', '2025-04-03 13:53:29'),
 (72, 41, '<p><iframe src=\"https://vip.opstream15.com/share/0f54abbcebb0de7cd55ce249d8f8fd25\" frameborder=\"0\"></iframe></p>', '2', '2025-04-03 13:53:29', '2025-04-03 13:53:29'),
 (73, 41, '<p><iframe src=\"https://vip.opstream15.com/share/4c51f2883846aa0af21c588c539dfd67\" frameborder=\"0\"></iframe></p>', '3', '2025-04-03 13:53:29', '2025-04-03 13:53:29'),
-(74, 41, '<p><iframe src=\"https://vip.opstream15.com/share/91e721179d18a78a03c89996dd50a91b\" frameborder=\"0\"></iframe></p>', '4', '2025-04-03 13:53:29', '2025-04-03 13:53:29');
+(74, 41, '<p><iframe src=\"https://vip.opstream15.com/share/91e721179d18a78a03c89996dd50a91b\" frameborder=\"0\"></iframe></p>', '4', '2025-04-03 13:53:29', '2025-04-03 13:53:29'),
+(75, 42, '<p><iframe src=\"https://vip.opstream15.com/share/4e21f96122846f32545687ad42b271e2\" frameborder=\"0\"></iframe></p>', '1', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(76, 42, '<p><iframe src=\"https://vip.opstream15.com/share/b5ffb84b092e8433f1ffff8ed4be85c9\" frameborder=\"0\"></iframe></p>', '2', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(77, 42, '<p><iframe src=\"https://vip.opstream15.com/share/f68ca0ae4fd5100274d7191ccb4d8d91\" frameborder=\"0\"></iframe></p>', '3', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(78, 42, '<p><iframe src=\"https://vip.opstream12.com/share/095f4e5a1c4c070cf8f07b428d385be1\" frameborder=\"0\"></iframe></p>', '4', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(79, 42, '<p><iframe src=\"https://vip.opstream12.com/share/af5c4b7bf58c31737588e1fd4adcec9a\" frameborder=\"0\"></iframe></p>', '5', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(80, 42, '<p><iframe src=\"https://vip.opstream12.com/share/dff828a2db2702a3b0d2790e23acd705\" frameborder=\"0\"></iframe></p>', '6', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(81, 42, '<p><iframe src=\"https://vip.opstream12.com/share/1e360e456bb346d5ec2e9d6b411a323f\" frameborder=\"0\"></iframe></p>', '7', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(82, 42, '<p><iframe src=\"https://vip.opstream15.com/share/6d423fa01170be4223b9662c3465d8ff\" frameborder=\"0\"></iframe></p>', '8', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(83, 42, '<p><iframe src=\"https://vip.opstream15.com/share/c5ecbc9e8ba21e24c01efc6842e13616\" frameborder=\"0\"></iframe></p>', '9', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(84, 42, '<p><iframe src=\"https://vip.opstream15.com/share/31c1c7d3bb80f660b6cd5d365f981b5f\" frameborder=\"0\"></iframe></p>', '10', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(85, 42, '<p><iframe src=\"https://vip.opstream15.com/share/b02a8554744141829dd099670b93b968\" frameborder=\"0\"></iframe></p>', '11', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(86, 42, '<p><iframe src=\"https://vip.opstream12.com/share/e8a6f9224cc383ba6023c1a20c3fa846\" frameborder=\"0\"></iframe></p>', '12', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(87, 42, '<p><iframe src=\"https://vip.opstream15.com/share/df5042d2f18eae9df7a0d41857d87627\" frameborder=\"0\"></iframe></p>', '13', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(88, 42, '<p><iframe src=\"https://vip.opstream90.com/share/33ef701c8059391708f1c3ddbe9f1f81\" frameborder=\"0\"></iframe></p>', '14', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(89, 42, '<p><iframe src=\"https://vip.opstream15.com/share/e8f5a601f4b2229f2957cca9391d6f21\" frameborder=\"0\"></iframe></p>', '15', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(90, 42, '<p><iframe src=\"https://vip.opstream15.com/share/5e38c6c14e095dd7b30db8c0fdba643a\" frameborder=\"0\"></iframe></p>', '16', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(91, 42, '<p><iframe src=\"https://vip.opstream15.com/share/c8b5b6ade1c8d9fe9a41df4dc7e78f78\" frameborder=\"0\"></iframe></p>', '17', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(92, 42, '<p><iframe src=\"https://vip.opstream12.com/share/9a3bd37a71b632e7726f149bbd771052\" frameborder=\"0\"></iframe></p>', '18', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(93, 42, '<p><iframe src=\"https://vip.opstream12.com/share/393db82ebb6d0148176e924e40f9d2e6\" frameborder=\"0\"></iframe></p>', '19', '2025-04-04 10:20:34', '2025-04-04 10:20:34'),
+(94, 42, '<p><iframe src=\"https://vip.opstream15.com/share/bacea30d16b0bb49c20bbd59106591e4\" frameborder=\"0\"></iframe></p>', '20', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(95, 42, '<p><iframe src=\"https://vip.opstream15.com/share/78d01c0a69c7db5312e58e086ffa17f2\" frameborder=\"0\"></iframe></p>', '21', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(96, 42, '<p><iframe src=\"https://vip.opstream15.com/share/2650bdb930762f15e451bd72792ac432\" frameborder=\"0\"></iframe></p>', '22', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(97, 42, '<p><iframe src=\"https://vip.opstream15.com/share/f2735a800fe6b68a5117504cbec84752\" frameborder=\"0\"></iframe></p>', '23', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(98, 42, '<p><iframe src=\"https://vip.opstream12.com/share/408c43f7f18fd6b4f50bf3857aecbd3f\" frameborder=\"0\"></iframe></p>', '24', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(99, 42, '<p><iframe src=\"https://vip.opstream12.com/share/73bf740ed941e13e76e67049a5165b91\" frameborder=\"0\"></iframe></p>', '25', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(100, 42, '<p><iframe src=\"https://vip.opstream15.com/share/b1411553dadaf7fbf04dadc2fbe162a5\" frameborder=\"0\"></iframe></p>', '26', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(101, 42, '<p><iframe src=\"https://vip.opstream15.com/share/de0065f6369af24a2c99fc62e6ae0870\" frameborder=\"0\"></iframe></p>', '27', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(102, 42, '<p><iframe src=\"https://vip.opstream15.com/share/27d332089c22e8f8578ec62a8e31dd2d\" frameborder=\"0\"></iframe></p>', '28', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(103, 42, '<p><iframe src=\"https://vip.opstream15.com/share/a715ec344290739df29a211fead6ded9\" frameborder=\"0\"></iframe></p>', '29', '2025-04-04 10:20:35', '2025-04-04 10:20:35'),
+(104, 43, '<p><iframe src=\"https://vip.opstream15.com/share/2f6a0826437abc6688b22dfd89d783c0\" frameborder=\"0\"></iframe></p>', 'Full', '2025-04-04 10:27:35', '2025-04-04 10:27:35'),
+(105, 46, '<p><iframe src=\"https://vip.opstream16.com/share/0dd552b30e0889e7fffcc386e3508484\" frameborder=\"0\"></iframe></p>', '1', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(106, 46, '<p><iframe src=\"https://vip.opstream16.com/share/d01d080783ec584fbcdeda594b17b442\" frameborder=\"0\"></iframe></p>', '2', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(107, 46, '<p><iframe src=\"https://vip.opstream16.com/share/1915f6556ef3ac2c9fd7fef0d0bbba3f\" frameborder=\"0\"></iframe></p>', '3', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(108, 46, '<p><iframe src=\"https://vip.opstream16.com/share/6d2bb9eb2c15945e521e74f65e846d1d\" frameborder=\"0\"></iframe></p>', '4', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(109, 46, '<p><iframe src=\"https://vip.opstream16.com/share/3ad980cc442688dcd2cb1052725e2683\" frameborder=\"0\"></iframe></p>', '5', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(110, 46, '<p><iframe src=\"https://vip.opstream16.com/share/66f870cbf6b7ef5d6d1c8a3d4671e775\" frameborder=\"0\"></iframe></p>', '6', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(111, 46, '<p><iframe src=\"https://vip.opstream16.com/share/00b0b4deb1406b3141a6de7c3950a424\" frameborder=\"0\"></iframe></p>', '7', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(112, 46, '<p><iframe src=\"https://vip.opstream16.com/share/02f0e6a7fa6ad9f53391a17e80335e49\" frameborder=\"0\"></iframe></p>', '8', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(113, 46, '<p><iframe src=\"https://vip.opstream16.com/share/ddf26bf6c716f9ad2d1b05a321e4b5b8\" frameborder=\"0\"></iframe></p>', '9', '2025-04-04 10:28:49', '2025-04-04 10:28:49'),
+(114, 46, '<p><iframe src=\"https://vip.opstream16.com/share/f0c19e4e1cbcc224b862bb4579a06a7e\" frameborder=\"0\"></iframe></p>', '10', '2025-04-04 10:28:49', '2025-04-04 10:28:49');
 
 -- --------------------------------------------------------
 
@@ -420,7 +517,8 @@ INSERT INTO `genres` (`id`, `title`, `description`, `status`, `slug`) VALUES
 (10, 'Cổ Trang', NULL, 1, 'co-trang'),
 (11, 'Phiêu lưu', NULL, 1, 'phieu-luu'),
 (13, 'Trinh thám', NULL, 1, 'trinh-tham'),
-(14, 'Chính kịch', NULL, 1, 'chinh-kich');
+(14, 'Chính kịch', NULL, 1, 'chinh-kich'),
+(15, 'Hình Sự', NULL, 1, 'hinh-su');
 
 -- --------------------------------------------------------
 
@@ -543,21 +641,26 @@ INSERT INTO `movies` (`id`, `title`, `time`, `slug`, `description`, `status`, `i
 (4, 'Người Nhện: Du Hành Vũ Trụ Nhện', '140 phút', 'nguoi-nhen-du-hanh-vu-tru-nhen', 'Miles Morales tái xuất trong phần tiếp theo của bom tấn hoạt hình từng đoạt giải Oscar - Spider-Man: Across the Spider-Verse. Sau khi gặp lại Gwen Stacy, chàng Spider-Man thân thiện đến từ Brooklyn phải du hành qua đa vũ trụ và gặp một nhóm Người Nhện chịu trách nhiệm bảo vệ các thế giới song song. Nhưng khi nhóm siêu anh hùng xung đột về cách xử lý một mối đe dọa mới, Miles buộc phải đọ sức với các Người Nhện khác và phải xác định lại ý nghĩa của việc trở thành một người hùng để có thể cứu những người cậu yêu thương nhất.', 1, 'movie/4Wzn5MrD9pvWuipMuvN2zpvzIkiv06UkV5CMcUSZ.webp', 6, '1', 2, 5, 0, NULL, '1', 4, 'Spider-Man: Across the Spider-Verse', '2025-03-05 12:37:23', '2025-04-02 13:17:29', '2022', 0, 17904, 0, 0, NULL),
 (6, 'Khi Chim Nhạn Trở Về', '40 phút/tập', 'khi-chim-nhan-tro-ve', 'Từ nhỏ, Trang Hàn Nhạn bị bỏ rơi ở nơi miền quê phương Nam. Trải qua muôn vàn khó khăn, cô trở về nhà họ Trang ở kinh thành và và lọt vào mắt xanh của Phó Vân Tịch, Phó Thiếu khanh Đại Lý Tự. Phó Vân Tịch mắc một chứng bệnh kỳ lạ, muốn cưới một thê tử tài đức vẹn toàn để có thể chăm sóc cho mình. Với sự gan dạ và tấm lòng lương thiện, Trang Hàn Nhạn trở thành lựa chọn lý tưởng nhất. Trong quá trình thăm dò và thử thách lẫn nhau, cả hai dần nảy sinh tình cảm. Hàn Nhạn không chỉ hóa giải khúc mắc với mẹ, tìm lại tình thân đã đánh mất mà còn cảm nhận được tình cảm ấm áp của gia đình khi sống chung với người nhà họ Phó. Cô và Phó Vân Tịch liên thủ vạch trần bộ mặt giả nhân giả nghĩa của Trang Sĩ Dương – gia chủ nhà họ Trang, kẻ lộng quyền làm trái pháp luật và trở thành đôi phu thê hạnh phúc.', 1, 'movie/nPqwsxgxs4XY48r51mJ7QDHg6IFqWNU4Y0FSgcEg.webp', 5, '0', 3, 3, 0, 'gq2xKJXYZ80', '25', 0, 'The Glory, Quý Nữ', '2025-03-01 17:00:00', '2025-03-31 12:48:22', '2024', 0, 99899, 0, 0, NULL),
 (8, 'Natra Ma Đồng Giáng Thế', '110 phút', 'natra-ma-dong-giang-the', 'Bộ phim Natra Ma Đồng Giáng Thế - Ne Zha thuộc thể loại hoạt hình 3D của trung quốc thuộc thể loại Tiên hiệp phiêu lưu được công chiếu vào năm 2019. Bộ phim do Giảo Tử nhận trách nhiệm đạo diễn, với hai đồng biên kịch là Dịch Xảo và Nguỵ Vân. Phim được sản xuất dựa vào nguyên tác Phong thần diễn nghĩa, nội dung xoay quanh nhân vật Na Tra và con trai của Đông hải long vương là Ngao Bính. Câu chuyện truyền kỳ của Na Tra không may bị coi thành Ma hoàn chuyển thế, phải đối mặt với vận mệnh đầy trắc trở nhưng không chịu khuất phục.', 1, 'movie/eKafWKlnLcayYz7mPdLEewLSQLlBfoZEd5hP1Bi4.webp', 7, '1', 4, 3, 0, 'yCJy9roIv8Q', '1', 0, 'Ne Zha', '2025-03-01 12:37:05', '2025-04-02 10:26:38', '2025', 0, 167546, 0, 3, NULL),
-(9, 'Truyện Kinh Dị Mỹ 11', '45 phút/', 'truyen-kinh-di-my-11', 'Truyện kinh dị Mỹ (tựa gốc: American Horror Story) là loạt phim truyền hình nhiều tập ngắn kinh dị của Mỹ được sản xuất bởi Ryan Murphy và Brad Falchuk. Được biên kịch dưới dạng series, mỗi mùa được sản xuất dưới dạng phim truyền hình ngắn, khoảng 12 tập. Sau mỗi mùa, bối cảnh, cũng như các nhân vật được thay mới hoàn toàn, kể cả với các diễn viên từng tham gia mùa trước nên các mùa phim có cốt truyện độc lập với nhau, sở hữu cao trào và kết thúc riêng. Một số yếu tố trong phim lấy cảm hứng từ những câu chuyện và nhân vật có thật.', 1, 'movie/O46fe82JsVMYuNpN8rjVrNOQp5h1Zk3rSkxclyvp.webp', 5, '0', 2, 5, 1, 'ME2_Anq-fJs', '5', 2, 'American Horror Story', NULL, '2025-04-03 08:36:44', '2025', 0, 98862, 0, 0, NULL),
-(10, 'SAKAMOTO DAYS: Sát Thủ Về Vườn', '24 phút/tập', 'sakamoto-days-sat-thu-ve-vuon', 'Từng là sát thủ vĩ đại nhất, Sakamoto Taro giờ rửa tay gác kiếm vì tình yêu. Nhưng khi quá khứ tìm đến, anh phải chiến đấu để bảo vệ gia đình thân yêu của mình.', 1, 'movie/clBhwmlXNNdKJwJEQJuDFV1yMNVrsNHyr5claDcj.webp', 5, '0', 2, 7, 1, '9TbmxbckSjE', '3', 0, 'SAKAMOTO DAYS', '2025-03-03 12:36:35', '2025-03-31 11:46:39', '2023', 3, 55446, 0, 0, NULL),
+(9, 'Truyện Kinh Dị Mỹ 11', '45 phút/', 'truyen-kinh-di-my-11', 'Truyện kinh dị Mỹ (tựa gốc: American Horror Story) là loạt phim truyền hình nhiều tập ngắn kinh dị của Mỹ được sản xuất bởi Ryan Murphy và Brad Falchuk. Được biên kịch dưới dạng series, mỗi mùa được sản xuất dưới dạng phim truyền hình ngắn, khoảng 12 tập. Sau mỗi mùa, bối cảnh, cũng như các nhân vật được thay mới hoàn toàn, kể cả với các diễn viên từng tham gia mùa trước nên các mùa phim có cốt truyện độc lập với nhau, sở hữu cao trào và kết thúc riêng. Một số yếu tố trong phim lấy cảm hứng từ những câu chuyện và nhân vật có thật.', 1, 'movie/O46fe82JsVMYuNpN8rjVrNOQp5h1Zk3rSkxclyvp.webp', 5, '0', 2, 5, 1, 'ME2_Anq-fJs', '5', 2, 'American Horror Story', NULL, '2025-04-04 10:15:25', '2025', 0, 98863, 0, 0, NULL),
+(10, 'SAKAMOTO DAYS: Sát Thủ Về Vườn', '24 phút/tập', 'sakamoto-days-sat-thu-ve-vuon', 'Từng là sát thủ vĩ đại nhất, Sakamoto Taro giờ rửa tay gác kiếm vì tình yêu. Nhưng khi quá khứ tìm đến, anh phải chiến đấu để bảo vệ gia đình thân yêu của mình.', 1, 'movie/clBhwmlXNNdKJwJEQJuDFV1yMNVrsNHyr5claDcj.webp', 5, '0', 2, 7, 1, '9TbmxbckSjE', '3', 0, 'SAKAMOTO DAYS', '2025-03-03 12:36:35', '2025-04-04 08:50:52', '2023', 3, 55448, 0, 0, NULL),
 (11, 'One Piece: Đỏ', '116 phút', 'one-piece-do', 'Đây là phần phim thứ mười lăm trong loạt phim điện ảnh của One Piece, dựa trên bộ truyện manga nổi tiếng cùng tên của tác giả Eiichiro Oda. Phim được công bố lần đầu tiên vào ngày 21 tháng 11, 2021 để kỷ niệm sự ra mắt của tập phim thứ 1000 của bộ anime One Piece và sau khi tập phim này được phát sóng, đoạn quảng cáo và áp phích chính thức của phim cũng chính thức được công bố. Phim dự kiến sẽ phát hành vào ngày 6 tháng 8 năm 2022. Bộ phim được giới thiệu sẽ là hành trình xoay quanh một nhân vật nữ mới cùng với Shanks \"Tóc Đỏ\".', 1, 'movie/LVWKlKnIs4cUi54UrUecTR249TXxEZkOuk4x3LMM.webp', 6, '1', 2, 7, 1, 'eU0i7L3cakI', '1', 4, 'One Piece: Film Red', '2023-05-07 08:50:26', '2025-04-03 08:41:51', '2022', 1, 889999, 0, 3, NULL),
 (13, 'Bậc Thầy Đàm Phán', '1 tiếng', 'bac-thay-dam-phan', 'Nhà đàm phán huyền thoại Yoon Joo No trở thành trưởng nhóm Mua bán và Sáp nhập của tập đoàn Sanin. Từ đó, ta sẽ được thấy mỗi thương vụ là mỗi cuộc chiến và và mỗi nhân vật là một đối thủ đáng gờm.', 1, 'movie/DsO3vY51iUtK87ZaYC546zUMueyyRNXvGln9RXUH.webp', 5, '0', 3, 6, 1, 'WLAdEVKIRRU', '10', 4, 'The Art of Negotiation', '2023-05-21 06:06:08', '2025-03-31 11:48:05', '2025', 0, 90888, 0, 1, NULL),
-(15, 'Vua Sói', '24 phút/tập', 'vua-soi', 'Ở loạt phim phiêu lưu giả tưởng hoành tráng này, một thường dân đến tuổi trưởng thành biết được mình là người cuối cùng của dòng dõi Người sói lâu đời – và sẽ kế thừa ngai vàng.', 1, 'movie/3pd2NCnGXvo92B5pdeAF0QFPiWay5vxkm4yn6xfP.webp', 5, '0', 2, 5, 1, NULL, '8', 0, 'Wolf King', '2023-06-10 04:03:48', '2025-04-03 13:49:17', '2025', 0, 666759, 0, 1, NULL),
+(15, 'Vua Sói', '24 phút/tập', 'vua-soi', 'Ở loạt phim phiêu lưu giả tưởng hoành tráng này, một thường dân đến tuổi trưởng thành biết được mình là người cuối cùng của dòng dõi Người sói lâu đời – và sẽ kế thừa ngai vàng.', 1, 'movie/3pd2NCnGXvo92B5pdeAF0QFPiWay5vxkm4yn6xfP.webp', 5, '0', 2, 5, 1, NULL, '8', 0, 'Wolf King', '2023-06-10 04:03:48', '2025-04-04 04:34:03', '2025', 0, 666763, 0, 1, NULL),
 (16, 'Cuộc Chơi Mạo Hiểm', '120 phút', 'cuoc-choi-mao-hiem', 'Tài tử hạng A Russel Crowe vào vai tỷ phú công nghệ kiêm tay cờ bạc Jake Foley (Crowe) tổ chức một trò chơi poker có tỷ lệ cược cao giữa những người bạn thời thơ ấu, mang đến cho họ cơ hội giành được nhiều tiền hơn cả những gì họ từng mơ ước. Buổi tối thay đổi khi anh ấy tiết lộ kế hoạch công phu của mình để trả thù cho sự phản bội của họ và để chơi, họ sẽ phải từ bỏ một điều mà họ đã dành cả đời để cố gắng giữ... bí mật của mình. Khi trò chơi mở ra, những tên trộm đột nhập và chúng phải liên kết với nhau để sống sót qua đêm kinh hoàng.', 1, 'movie/AvAfTrLtlyBWedmaRsKvM7vgOM0rZIrcyfen8Rzq.webp', 3, '1', 2, 5, 0, NULL, '1', 2, NULL, '2025-03-31 12:16:49', '2025-03-31 12:17:03', '2013', 0, NULL, 0, NULL, NULL),
 (17, '404 Chạy Ngay Đi', '104 phút', '404-chay-ngay-di', 'Nakrob, một kẻ lừa đảo bất động sản trẻ tuổi, phát hiện ra một khách sạn trên sườn đồi bị bỏ hoang gần bãi biển. Nhìn thấy cơ hội, anh ta quyết định biến nó thành một vụ lừa đảo khách sạn sang trọng.', 1, 'movie/teOdSQngurnZns2qPAc5mjmdga7x4OdMBI1kdQdR.webp', 7, '1', 2, 4, 1, 'bTJ-fHJopAI', '1', 1, '04 Run Run', '2025-03-31 12:47:33', '2025-04-03 08:41:58', NULL, 0, 8, 1, NULL, NULL),
 (21, 'Cecilia', '105 Phút', 'cecilia', 'After repeatedly flaunting her peerless body to her servants, snobbish aristocrat Cecilia becomes the victim of rape. But the experience triggers a carnal awakening, full of socialite sex parties and woodland orgies. And before long, Cecilia finds her amorous adventures spinning out of control, particularly when her husband decides to join in on the free-love lifestyle.', 1, 'https://img.ophim.live/uploads/movies/cecilia-thumb.jpg', 7, '1', 13, 8, 1, '', '1', 0, 'Cecilia', '2025-04-02 17:19:09', '2025-04-03 08:36:07', NULL, 0, 3, 0, NULL, NULL),
-(22, 'Tình Yêu Bị Chiếm Hữu (Phần 2)', '108 phút/tập', 'tinh-yeu-bi-chiem-huu-phan-2', '<p>Tám thầy bói đã tụ họp lại để xem vận mệnh hẹn hò tương lai của chính họ! Trong thời gian ở cùng nhau tại Ngôi nhà bị ám trong một tuần, các thầy bói trẻ sẽ sử dụng chuyên môn của mình để tìm kiếm tình yêu định mệnh một cách mù quáng. Liệu họ có thể tìm thấy người bạn đời định mệnh của mình không, và họ sẽ làm gì khi tình cảm của họ quyết định đi ngược lại số phận?</p>', 1, 'https://img.ophim.live/uploads/movies/tinh-yeu-bi-chiem-huu-phan-2-thumb.jpg', 7, '1', 13, 8, 1, '', '?', 0, 'Possessed Love (Season 2)', '2025-04-02 17:19:26', '2025-04-03 08:54:06', NULL, 0, 8, 0, NULL, NULL),
+(22, 'Tình Yêu Bị Chiếm Hữu (Phần 2)', '108 phút/tập', 'tinh-yeu-bi-chiem-huu-phan-2', '<p>Tám thầy bói đã tụ họp lại để xem vận mệnh hẹn hò tương lai của chính họ! Trong thời gian ở cùng nhau tại Ngôi nhà bị ám trong một tuần, các thầy bói trẻ sẽ sử dụng chuyên môn của mình để tìm kiếm tình yêu định mệnh một cách mù quáng. Liệu họ có thể tìm thấy người bạn đời định mệnh của mình không, và họ sẽ làm gì khi tình cảm của họ quyết định đi ngược lại số phận?</p>', 1, 'https://img.ophim.live/uploads/movies/tinh-yeu-bi-chiem-huu-phan-2-thumb.jpg', 7, '1', 13, 8, 1, '', '?', 0, 'Possessed Love (Season 2)', '2025-04-02 17:19:26', '2025-04-04 03:23:23', NULL, 0, 11, 0, NULL, NULL),
 (23, 'Chuyện Tình Cô Bé Lọ Lem: Phỉ Thúy Sơn', '60 phút/tập', 'chuyen-tinh-co-be-lo-lem-phi-thuy-son', '<p>Cô gái nọ phát hiện ra mình là đứa con thất lạc từ lâu của nhà họ Trương giàu có. Từ một kẻ nghèo khó, cô bước vào cuộc sống đầy rắc rối của giới thượng lưu.</p><p>&nbsp;</p>', 1, 'https://img.ophim.live/uploads/movies/chuyen-tinh-co-be-lo-lem-phi-thuy-son-thumb.jpg', 7, '1', 13, 8, 1, '', '30', 0, 'Emerald Hill', '2025-04-02 17:24:40', '2025-04-03 08:36:17', NULL, 0, 2, 0, NULL, NULL),
 (24, 'Daredevil: Tái Xuất', '50 phút/tập', 'daredevil-born-again', '<p>Bộ phim xoay quanh Matt Murdock (do Charlie Cox thủ vai), một luật sư mù ở Hell’s Kitchen, New York, người sống hai cuộc đời: ban ngày là một luật sư đấu tranh cho công lý, ban đêm là Daredevil – một siêu anh hùng đeo mặt nạ bảo vệ thành phố. Phim lấy bối cảnh vài năm sau các sự kiện của loạt phim Netflix, khi Matt cùng hai người bạn thân là Foggy Nelson (Elden Henson) và Karen Page (Deborah Ann Woll) đã tìm thấy sự ổn định trong cuộc sống với văn phòng luật của họ.Tuy nhiên, sự yên bình này không kéo dài khi Wilson Fisk (Vincent D’Onofrio), tức Kingpin – kẻ thù truyền kiếp của Daredevil, tái xuất với một kế hoạch đầy tham vọng. Không còn hoạt động trong thế giới ngầm như trước, Fisk giờ đây hướng đến chính trường và trở thành một nhân vật quyền lực tại New York, thậm chí có thể là thị trưởng. Mâu thuẫn giữa Matt và Fisk leo thang khi cả hai đối đầu trong một cuộc chiến vừa mang tính cá nhân vừa ảnh hưởng đến cả thành phố.</p><p>&nbsp;</p>', 1, 'https://img.ophim.live/uploads/movies/daredevil-born-again-thumb.jpg', 7, '1', 2, 8, 1, 'https://www.youtube.com/watch?v=7xALolZzhSM', '9', 0, 'Daredevil: Born Again', '2025-04-03 08:15:12', '2025-04-03 13:53:59', NULL, 0, 15, 0, 1, NULL),
-(33, 'Your Forma', '24 phút/tập', 'your-forma', '<p>Vào năm 2023 khác, Your Forma—một công nghệ \"sợi thông minh\" kỳ diệu—đã trở thành một thành phần thiết yếu của cuộc sống hàng ngày sau khi được tạo ra để điều trị một đợt bùng phát viêm não do vi-rút lan rộng. Tính năng xâm nhập của những tiện ích tiện dụng này là chúng ghi lại mọi âm thanh, hình ảnh và thậm chí cả cảm giác mà người dùng trải qua.</p>', 1, 'https://img.ophim.live/uploads/movies/your-forma-thumb.jpg', 9, '1', 7, 3, 1, NULL, '4 Tập', 0, 'Your Forma', '2025-04-03 12:49:32', '2025-04-03 13:49:05', NULL, 0, 1, 0, NULL, NULL),
+(33, 'Your Forma', '24 phút/tập', 'your-forma', '<p>Vào năm 2023 khác, Your Forma—một công nghệ \"sợi thông minh\" kỳ diệu—đã trở thành một thành phần thiết yếu của cuộc sống hàng ngày sau khi được tạo ra để điều trị một đợt bùng phát viêm não do vi-rút lan rộng. Tính năng xâm nhập của những tiện ích tiện dụng này là chúng ghi lại mọi âm thanh, hình ảnh và thậm chí cả cảm giác mà người dùng trải qua.</p>', 1, 'https://img.ophim.live/uploads/movies/your-forma-thumb.jpg', 9, '1', 7, 3, 1, NULL, '4 Tập', 0, 'Your Forma', '2025-04-03 12:49:32', '2025-04-04 08:10:24', NULL, 0, 8, 0, NULL, NULL),
 (39, 'Ô Vân Chi Thượng', '45 phút/tập', 'o-van-chi-thuong', 'Hàn Thanh là nữ cảnh sát thuộc đội điều tra hình sự Tam Hợp. Vì nghiêm túc, ít nói và chỉ tập trung vào công việc, cô được gắn biệt danh “Không Vui”. Cô đã hợp tác ăn ý với đồng nghiệp Chung Vĩ nhiều năm, nhưng Chung Vĩ lại mất tích sau khi theo dõi một nghi phạm và không có tin tức suốt gần hai tháng. Trong khi lo lắng và đau khổ, Hàn Thanh vẫn xử lý các vụ án khác, không từ bỏ bất kỳ manh mối nào liên quan đến Chung Vĩ. Một vụ án mạng mới khiến Hàn Thanh cảnh giác cao độ. Qua các chi tiết nhỏ, cô phán đoán vụ án mạng này có liên quan đến sự mất tích của Chung Vĩ. Dù gặp nhiều trở ngại trong quá trình điều tra, kẻ phạm tội thực sự cuối cùng đã lộ diện và những gì mà Chung Vĩ đã trải qua cũng dần trở nên rõ ràng. Cảnh sát lần theo các manh mối, phát hiện mối liên hệ giữa ba vụ án lớn: mất tích, giết người và buôn ma túy, từ đó lần ra mạng lưới tổ chức tội phạm phức tạp và những bí mật ẩn giấu đằng sau nó. Đội điều tra Tam Hợp hợp lực, phá án thành công, toàn bộ tội phạm đều bị bắt giữ.', 1, 'https://img.ophim.live/uploads/movies/o-van-chi-thuong-thumb.jpg', 9, '1', 14, 3, 0, NULL, '17 Tập', 0, 'Breaking the Shadows', '2025-04-03 13:33:01', '2025-04-03 13:49:12', NULL, 0, 1, 0, NULL, NULL),
 (40, 'Đảo Rắn Khổng Lồ', '90 Phút', 'dao-ran-khong-lo', 'Tập đoàn Lam Sơn muốn biến con phố Hướng Dương tĩnh mịch và yên bình thành một khu du lịch nghỉ dưỡng, lấy danh nghĩa phục hồi hệ sinh thái tự nhiên để ép buộc người dân di dời. Tuy nhiên, các mẫu sinh vật từ cơ sở nghiên cứu đã thoát ra ngoài, gây ra thảm họa sinh học. Nam chính Hàn Kiệt, trong hoàn cảnh nguy hiểm, không hề nao núng mà bảo vệ hai cô con gái và những người hàng xóm. Bằng hành động thực tế của mình, anh dần dần thay đổi những người xung quanh. Cuối cùng, tập đoàn Lam Sơn đã phải chịu hình phạt thích đáng.', 1, 'https://img.ophim.live/uploads/movies/dao-ran-khong-lo-thumb.jpg', 9, '1', 7, 3, 0, NULL, '1', 0, 'Island Python', '2025-04-03 13:34:34', '2025-04-03 13:45:43', NULL, 0, 1, 0, NULL, NULL),
-(41, 'Xin Hãy Kết Hôn Với Tôi Lần Nữa', '12 phút/tập', 'xin-hay-ket-hon-voi-toi-lan-nua', 'Mi Chuxia partners with influencer Lu Yi to revive her late fiancé Tang Jingxing’s jewelry brand, only to uncover that Lu Yi is actually Tang Jingxing, who vanished after a car accident three years ago. As their relationship deepens, the truth behind his disappearance gradually comes to light.', 1, 'https://img.ophim.live/uploads/movies/xin-hay-ket-hon-voi-toi-lan-nua-thumb.jpg', 1, '1', 14, 3, 0, '', '31 Tập', 0, 'Marry Me Again', '2025-04-03 13:53:18', '2025-04-03 13:53:18', NULL, 0, 0, 0, NULL, NULL);
+(41, 'Xin Hãy Kết Hôn Với Tôi Lần Nữa', '12 phút/tập', 'xin-hay-ket-hon-voi-toi-lan-nua', 'Mi Chuxia partners with influencer Lu Yi to revive her late fiancé Tang Jingxing’s jewelry brand, only to uncover that Lu Yi is actually Tang Jingxing, who vanished after a car accident three years ago. As their relationship deepens, the truth behind his disappearance gradually comes to light.', 1, 'https://img.ophim.live/uploads/movies/xin-hay-ket-hon-voi-toi-lan-nua-thumb.jpg', 1, '1', 14, 3, 0, '', '31 Tập', 0, 'Marry Me Again', '2025-04-03 13:53:18', '2025-04-03 13:53:18', NULL, 0, 0, 0, NULL, NULL),
+(42, 'Tôi Là Triệu Xuất Tức', '37 phút/tập', 'toi-la-trieu-xuat-tuc', '<p>Diễn viên Triệu Bính Nhuệ, Trương Hinh Dư, Lộ Hoành, Sử Nguyên Đình, Phụng Lị, Sư Tiểu Hồng, Trương Xuân Trọng , Lưu Ba, Hàn Vũ Đồng, Trương San Manh, Vương Tử Duệ, Quảng Hiểu Đồng.</p>', 1, 'https://img.ophim.live/uploads/movies/toi-la-trieu-xuat-tuc-thumb.jpg', 1, '1', 14, 3, 0, '', '30', 0, 'My Name is Zhao Chuxi', '2025-04-04 10:20:25', '2025-04-04 10:20:25', NULL, 0, 0, 0, NULL, NULL),
+(43, 'Băng Cướp Siêu Xe', '97 Phút', 'bang-cuop-sieu-xe', '<p>Ban ngày, họ là những giá trị, tiếp viên và người pha chế vô hình tại một khách sạn sang trọng. Vào ban đêm, họ là những kẻ lừa đảo, một nhóm tài xế lành nghề theo dõi và Rob giàu có trên đường. Khi họ lên kế hoạch cho vụ trộm cuối cùng của họ, giám đốc khách sạn thuê một người tấn công tàn nhẫn, để ngăn chặn họ bằng mọi giá. Với nguy cơ đóng cửa, Nora, Zoe, Steve và uy tín có thể rút được điểm số lớn nhất của họ chưa?</p><p>&nbsp;</p>', 1, 'https://img.ophim.live/uploads/movies/bang-cuop-sieu-xe-thumb.jpg', 1, '1', 2, 9, 0, 'https://www.youtube.com/watch?v=dGG_KyndrWU', '1', 0, 'Carjackers', '2025-04-04 10:26:51', '2025-04-04 10:26:51', '2025', 0, 0, 0, NULL, NULL),
+(44, 'Người Đẹp Báo Thù', '113 Phút', 'nguoi-dep-bao-thu-2025', '<p>Câu chuyện xoay quanh Scarlett, một kẻ móc túi và tội phạm nhỏ lẻ ở London, người bị cuốn vào thế giới buôn lậu kim cương sau khi gặp gỡ và yêu Robert McNaughton (Philip Winchester), một cựu lính thủy đánh bộ trở thành kẻ buôn lậu kim cương.Sau cái chết của Robert do bị đồng bọn phản bội, Scarlett, với biệt danh \"Duchess\", quyết tâm trả thù những kẻ đã hại anh. Cô hợp tác với Danny Oswald (Sean Pertwee) và Billy Baraka (Hoji Fortuna), những người trung thành với Robert, để thực hiện kế hoạch báo thù.</p><p>&nbsp;</p>', 1, 'https://img.ophim.live/uploads/movies/nguoi-dep-bao-thu-2025-thumb.jpg', 1, '1', 2, 10, 0, 'https://www.youtube.com/watch?v=iCxiiqlE7eg', '1', 0, 'Duchess', '2025-04-04 10:27:52', '2025-04-04 10:27:52', '2024', 0, 0, 0, NULL, NULL),
+(45, '악연', '47 phút/tập', '악연', 'A fateful accident intertwines six lives in a thrilling tale of karma and crime, where each must face their own dark truths and connections.', 1, 'https://img.ophim.live/uploads/movies/악연-thumb.jpg', 1, '1', 15, 6, 0, 'https://www.youtube.com/watch?v=E_e9cpN994s', '6 Tập', 0, 'Karma', '2025-04-04 10:28:08', '2025-04-04 10:28:08', '2025', 0, 0, 0, NULL, NULL),
+(46, '#KhôngBộLọc', '34 phút/tập', 'khongboloc', '<p>Chán học, Marcely nghỉ ngang đại học để theo đuổi mục tiêu mới trong đời: trở thành người có ảnh hưởng. Nhưng cuộc sống trên mạng không dễ như cô tưởng…</p>', 1, 'https://img.ophim.live/uploads/movies/khongboloc-thumb.jpg', 1, '1', 5, 11, 0, '', '10 Tập', 0, '#NoFilter', '2025-04-04 10:28:28', '2025-04-04 10:28:28', '2023', 0, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -616,7 +719,12 @@ INSERT INTO `movie_genre` (`id`, `movie_id`, `genre_id`) VALUES
 (74, 33, 7),
 (80, 39, 14),
 (81, 40, 7),
-(82, 41, 14);
+(82, 41, 14),
+(83, 42, 14),
+(84, 43, 2),
+(85, 44, 2),
+(86, 45, 15),
+(87, 46, 5);
 
 -- --------------------------------------------------------
 
@@ -726,8 +834,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1EwZrQEdRSEXh4ZVvajW2Le43qEXxYU2zFGIcQXd', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZm85YVhIOXJSWUhwTHZQVmlOeDlPazNDNG1udlFNZnNVRGlXU3lqayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sZWVjaC1kZXRhaWwvb25lLXBpZWNlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxODoiZmxhc2hlcjo6ZW52ZWxvcGVzIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NDoiYXV0aCI7YToxOntzOjIxOiJwYXNzd29yZF9jb25maXJtZWRfYXQiO2k6MTc0MzY3OTQyMzt9fQ==', 1743685529),
-('yjfvuhQsM5Qt3SBeEP4MczJvLeYwsfXFShauwlZu', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQmlYSDJUUzFoM2QybHJ0U2dnd1lFMWxmRnFrTzJIbk1URzR3OTMxdiI7czoxODoiZmxhc2hlcjo6ZW52ZWxvcGVzIjthOjA6e31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Jhbm5lciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzQzNjY0ODA1O319', 1743694255);
+('1bUMlHv0XvYzU7tgYCQo2pPuDgWqOFLkYFF3HU6T', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoia2tjUTFGWFU2NGtqVG9kbG5TWVFVNE82SFZ3Uk1ZUmdrV2pGVEtzdiI7czoxODoiZmxhc2hlcjo6ZW52ZWxvcGVzIjthOjA6e31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE3NDM3NTQ0MDk7fX0=', 1743761261),
+('lqUHCoR23Z8H2APs2LdgekJylGYK6NerIBV6lse8', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiaTN1THBaSHhaOUpyTWVXRWEyczRETHh5akpPUm1kUXlWaG1hbXBieSI7czoxODoiZmxhc2hlcjo6ZW52ZWxvcGVzIjthOjA6e31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2RhbmgtbXVjL3BoaW0tbW9pIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE3NDM3NTk2ODA7fX0=', 1743762590);
 
 -- --------------------------------------------------------
 
@@ -955,13 +1063,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -973,13 +1081,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `episodes`
 --
 ALTER TABLE `episodes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -991,7 +1099,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `info`
@@ -1015,13 +1123,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `movie_genre`
 --
 ALTER TABLE `movie_genre`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

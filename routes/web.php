@@ -56,6 +56,8 @@ Route::get('/add-episode/{id}',[EpisodeController::class, 'addEpisode'])->name('
 Route::get('/update-year-phim',[MovieController::class, 'updateYear']);
 Route::get('/update-topview-phim',[MovieController::class, 'updateTopView']);
 Route::get('/update-season-phim',[MovieController::class, 'updateSeason']);
+Route::post('/update-click/{id}',[IndexController::class, 'updateClick'])->name('update-click');
+
 
 Route::middleware(['admin'])->group(function () {
     Route::resources([
@@ -79,11 +81,5 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech-episode');
     Route::post('leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store');
-
-    
-
-
-
-
 
 });

@@ -28,6 +28,7 @@ class LeechMovieController extends Controller
     {
         $resp = Http::get('https://ophim1.com/phim/' . $slug)->json();
         $resp_movie[] = $resp['movie'];
+        // dd($resp_movie);
         $movie = new Movie();
     
         foreach ($resp_movie as $res) {
@@ -40,6 +41,8 @@ class LeechMovieController extends Controller
             $movie->eng_name = $res['origin_name'];
             $movie->slug = $res['slug'];
             $movie->category_id = 1;
+            $movie->year = $res['year'];
+
             
 
     

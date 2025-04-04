@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Episode;
@@ -20,6 +21,10 @@ class IndexController extends Controller
 {
     public function home(Request $request)
     {
+        $banners = DB::table('banners')->where('status', 1)->orderBy('id', 'desc')->get();
+        $bannerModal = $banners->where('position', 0)->first();
+        $hotBanners= $banners->where('position', [1,2,3])->take(3);
+
         $info = Info::find(1);
         $title = $info->title;
         $description = $info->description;
@@ -236,8 +241,6 @@ class IndexController extends Controller
     }
     public function watch($slug, $tap)
     {
-
-        
         $movie_trending = DB::table('movies')->select('*')->where('is_hot', 1)->where('status', 1)->orderBy('updated_at', 'desc')->take(15)->get();
         $categories  = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $countries = Country::orderBy('id', 'desc')->get();
@@ -326,8 +329,6 @@ class IndexController extends Controller
     
         echo $output;
     }
-    
-
     public function filterTopviewDefault(Request $request)
     {
         $data = $request->all();
@@ -378,5 +379,15 @@ class IndexController extends Controller
          ->take(10)
          ->get();
         return view('pages.episode',compact('movie','movie_related'));
+    }
+    public function updateClick(Request $request, $id)
+    {
+        $banner = Banner::find($id);
+        if ($banner) {
+            $banner->click_count += 1;
+            $banner->save();
+            return redirect()->to($banner->url);
+        }
+        return redirect()->back();
     }
 }

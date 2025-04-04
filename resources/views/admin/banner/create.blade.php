@@ -23,7 +23,7 @@
                             @csrf
                             <div class="form-group mb-3">
                                 <label for="title" class="mb-2">Tiêu đề banner</label>
-                                <input type="text" name="title" id="slug" 
+                                <input type="text" name="title" id="title" 
                                     class="form-control" value="{{ old('title') }}">
                             </div>
                             <div class="form-group mb-3">
@@ -51,7 +51,7 @@
                                     <option value="">--Chọn vị trí--</option>
                                     <option value="0" @selected(old('status') == '0')>Modal</option>
                                     <option value="1" @selected(old('status') == '1')>Banner 1</option>
-                                    <option value="2" @selected(old('status') == '2')>Banner 1</option>
+                                    <option value="2" @selected(old('status') == '2')>Banner 2</option>
                                     <option value="3" @selected(old('status') == '3')>Banner 3</option>
                                 </select>
                             </div>

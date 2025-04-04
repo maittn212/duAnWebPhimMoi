@@ -270,6 +270,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v22.0">
     </script>
     <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}'></script>
+    
     <script type="text/javascript">
         
          function remove_background(movie_id)
