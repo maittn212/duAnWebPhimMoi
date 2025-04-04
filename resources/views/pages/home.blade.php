@@ -69,6 +69,47 @@
                     </article>
                 @endforeach
             </div>
+            <div class="ad-banners">
+                <div class="ad-banner">
+                    <a href="https://example1.com" target="_blank">
+                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 1">
+                    </a>
+                </div>
+                <div class="ad-banner">
+                    <a href="https://example2.com" target="_blank">
+                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 2">
+                    </a>
+                </div>
+                <div class="ad-banner">
+                    <a href="https://example3.com" target="_blank">
+                        <img src="https://th.bing.com/th/id/OIP.0fKXdBc4lufdpdHSDe22LQHaDt?rs=1&pid=ImgDetMain" alt="Banner Quảng Cáo 3">
+                    </a>
+                </div>
+            </div>
+            <style>
+   .ad-banners {
+    display: flex;
+    justify-content: space-between;  /* Căn giữa hoặc phân phối không gian giữa các banner */
+    margin-top: 20px;  /* Khoảng cách với phần trên */
+    margin-bottom: 20px;
+}
+
+.ad-banner {
+    width: 32%;  /* Chiều rộng của mỗi banner, điều chỉnh tùy theo nhu cầu */
+    height: auto;
+    box-sizing: border-box;
+}
+
+.ad-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+            </style>
+
             <script>
                 $(document).ready(function($) {
                     var owl = $('#halim_related_movies-2');
@@ -179,6 +220,7 @@
                                         </a>
                                     </div>
                                 </article>
+                                
                             @endforeach
                         @else
                             <p>Không có phim thuộc danh mục này</p>

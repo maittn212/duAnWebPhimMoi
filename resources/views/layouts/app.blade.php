@@ -179,13 +179,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <a href="{{ route('leech-movie') }}">
                                         <i class="fa fa-download"></i> <span>Leech phim</span>
                                     </a>
-                                    {{-- <ul class="treeview-menu">
-                                        <li>
-                                            <a href="{{ route('leech-episode', ) }}">
-                                                <i class="fa fa-circle-o"></i> Leech tập phim
-                                            </a>
-                                        </li>
-                                    </ul> --}}
+                                </li>
+                                <li class="treeview">
+                                    <a href="{{ route('banner.index') }}">
+                                        <i class="fa fa-image"></i> <span>Banner</span>
+                                    </a>
                                 </li>
 
                                 </li>

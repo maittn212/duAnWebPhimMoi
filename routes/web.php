@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoController;
@@ -64,6 +65,7 @@ Route::middleware(['admin'])->group(function () {
         'episode' => EpisodeController::class,
         'movie' => MovieController::class,
         'info' => InfoController::class,
+        'banner' => BannerController::class,
 
     ]);
     Route::get('/add-episode/{id}', [EpisodeController::class, 'addEpisode'])->name('add-episode');

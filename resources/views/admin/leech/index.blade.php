@@ -6,14 +6,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header mb-4 text-center fw-bold fs-3 bg-primary text-white shadow-lg rounded-pill">
-                        Quản lý nguồn phim
+                        Quản lý banner
                     </div>
                     <div class="card-body">                    
                         <table class="table"  id="tablePhim">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Tên phim</th>
+                                    <th scope="col">Tiêu đề</th>
                                     <th scope="col">Tên chính thức</th>
                                     <th scope="col">Ảnh</th>
                                     <th scope="col">Ảnh poster</th>
